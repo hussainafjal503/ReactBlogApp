@@ -1,0 +1,19 @@
+.spinner {
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	background: background-color: #00DBDE;
+	background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+	
+
+
+
+	-webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 5px),#000 0);
+	animation: spinner-c7wet2 1s infinite linear;
+ }
+ 
+ @keyframes spinner-c7wet2 {
+	100% {
+	   transform: rotate(1turn);
+	}
+ }
