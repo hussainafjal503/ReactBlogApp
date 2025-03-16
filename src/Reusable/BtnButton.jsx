@@ -1,9 +1,9 @@
 import React from 'react'
 
-function BtnButton({children, bgcolor,hovercolor,textcolor,handler}) {
+function BtnButton({children, bgcolor,hovercolor,textcolor,width,handler}) {
   return (
 	<button 
-	className={`rounded-md font-bold bg-blue-400 text-blue-500 hover:bg-blue-300  w-fit py-1 px-2 transition-all duration-200 cursor-pointer`} 
+	className={`rounded-md font-bold bg-blue-400 text-blue-500 hover:bg-blue-300  w-${width} py-1 px-2 transition-all duration-300 cursor-pointer hover:scale-105`} 
 	style={{
 		color:textcolor,
 		background:bgcolor,

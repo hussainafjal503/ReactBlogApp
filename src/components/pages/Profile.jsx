@@ -1,27 +1,108 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createAvatar } from "@dicebear/core";
 import { lorelei } from "@dicebear/collection";
 import { useSelector } from "react-redux";
 import BtnButton from "../../Reusable/BtnButton";
+import { getFirestore,collection,addDoc,getDocs,query,where } from "firebase/firestore";
+import firebaseConfigeApp from '../../firebase'
+
+
+const DB=getFirestore(firebaseConfigeApp);
 
 function Profile() {
   const { user } = useSelector((state) => state.auth);
-  console.log(user?.displayName);
+  // console.log(user);
 
   const avatar = createAvatar(lorelei, {
     seed: user?.displayName,
-    // ... other options
+
   });
   const svg = avatar.toDataUri();
 
-  //   function started;;
 
+const obj={
+	mobile:"",
+	bio:"",
+}
   const [edit, setEdit] = useState(false);
+  const [userData,setUserData]=useState(obj);
+  const[aboutData,setAboutData]=useState(null);
 
   const editHandler = () => {
     setEdit(!edit);
   };
 
+  const inputHandler=(e)=>{
+	const {name,value}=e.target;
+
+	setUserData({
+		...userData,
+		[name]:value
+	})
+  }
+
+
+  const submitUserDataHandler=async(e)=>{
+	e.preventDefault();
+      try{
+
+        const data ={...userData};
+        data.uid=user?.uid;
+        
+
+        const response=await addDoc(collection(DB,"Users"),data);
+        // console.log(response);
+        setEdit(false);
+        setUserData(obj);
+
+      }catch(err){
+        console.log(`Error occured while updating profile : ${err}`);
+
+      }
+
+
+  }
+
+
+  useEffect(()=>{
+
+      const getData=async()=>{
+
+          try{
+            // const querySnapshot=query(collection(DB,"Users"),where("uid",user.uid));
+            // console.log(querySnapshot);
+
+            // console.log(response);
+
+            const coll = collection(DB, "Users");
+            const q = query(coll, where("uid", "==", user.uid));  
+            const result = await getDocs(q);
+            
+            result.docs.forEach((doc) => {
+              const data = doc.data();  
+              if (data.uid === user.uid) {
+                setAboutData(data);
+              }
+            })
+
+          
+            
+
+          }catch(err){
+            console.log(`Error occured while getting user data : ${err}`);
+          }
+
+
+      }
+
+      getData();
+
+
+
+  },[])
+
+
+  /****************************xml codes *************************/
   return (
     <div className=" mt-25 md:mt-20 px-6 max-w-full flex flex-col gap-4">
       <div className=" font-bold text-lg md:text-4xl mb-1 md:mb-4">
@@ -73,14 +154,14 @@ function Profile() {
                 <label htmlFor="" className="font-medium text-gray-400 ">
                   Full Name
                 </label>
-                <p className="font-semibold ">User full name</p>
+                <p className="font-semibold ">{user?.displayName}</p>
               </div>
 
               <div className="flex flex-col gap-1 ">
                 <label htmlFor="" className="font-medium text-gray-400 ">
                   Email Address
                 </label>
-                <p className="font-semibold ">example@ gamil.com</p>
+                <p className="font-semibold ">{user?.email}</p>
               </div>
             </div>
 
@@ -89,14 +170,14 @@ function Profile() {
                 <label htmlFor="" className="font-medium text-gray-400 ">
                   Phone N0.
                 </label>
-                <p className="font-semibold ">0123948</p>
+                <p className="font-semibold ">{aboutData?.mobile}</p>
               </div>
 
               <div className="flex flex-col gap-1 ">
                 <label htmlFor="" className="font-medium text-gray-400 ">
                   Bio
                 </label>
-                <p className="font-semibold ">not share yet</p>
+                <p className="font-semibold ">{aboutData?.bio}</p>
               </div>
             </div>
           </div>
@@ -113,7 +194,10 @@ function Profile() {
               <input
                 type="text"
                 placeholder="Mobile No."
+				name="mobile"
+				value={userData.mobile}
                 className="w-52 rounded-md py-1 px-4 bg-transparent outline-none border  border-gray-400"
+				onChange={inputHandler}
               />
             </div>
 
@@ -121,8 +205,11 @@ function Profile() {
               <label htmlFor="">Bio</label>
               <textarea
                 type="text"
-                placeholder="Mobile No."
-                className="w-56 rounded-md py-1 px-4 bg-transparent outline-none border-gray-400 resize-none outline-none border  border-gray-400"
+                placeholder="share your Story.."
+				name="bio"
+				value={userData.bio}
+				onChange={inputHandler}
+                className="w-56 rounded-md py-1 px-4 bg-transparent outline-none border-gray-400 resize-none  border "
               ></textarea>
             </div>
           </form>
@@ -132,7 +219,7 @@ function Profile() {
               bgcolor={"#2B7FFF"}
               hovercolor={"#F54A00"}
               textcolor={"white"}
-              handler={editHandler}
+              handler={submitUserDataHandler}
             >
               Save
               <i className="ri-save-fill"></i>
