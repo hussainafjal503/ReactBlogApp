@@ -5,6 +5,11 @@ function Card({data}) {
   // const text = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nemo explicabo repudiandae recusandae officia, quibusdam fuga temporibus quidem dolorem doloribus. `;
 
 
+  // let today=new Date(data?.publishDate);
+  // console.log(data?.publishDate)
+
+  // console.log(data);
+
 
   function colorGenerator() {
     let red = Math.floor(Math.random() * 256);
@@ -22,8 +27,8 @@ function Card({data}) {
 
   return (
     <Link 
-
-    className="flex flex-col gap-4 max-w-[350px] border border-gray-300 rounded-md  transition-all duration-200 hover:translate-y-8 hover:scale-95 shadow-md hover:shadow-blue-400">
+      to={`/view-blog/${data?.id}`}
+    className="flex flex-col gap-4 max-w-[350px] border border-gray-300 rounded-md  transition-all duration-200 hover:translate-y-4 hover:scale-95 shadow-md hover:shadow-blue-400">
       <img src={data?.imageUrl && data?.imageUrl} alt="image" className="h-[250px] rounded-tl-md rounded-tr-md" />
 
       <div className="px-4 py-2 space-y-2">
@@ -32,7 +37,7 @@ function Card({data}) {
           <span>
             <i className="ri-arrow-drop-right-fill"></i>
           </span>
-          <span> {data?.publishDate ? data?.publishDate :"-----" }</span>
+          <span> {data?.publishDate ? new Date(data?.publishDate).toLocaleDateString() :"-----" }</span>
         </div>
 
         <div className="font-bold flex flex-row gap-6 justify-between items-center">
@@ -57,7 +62,7 @@ function Card({data}) {
             .map((item, index) => {
 
 				const color=colorGenerator();
-				console.log(color)
+				// console.log(color)
 
               return (
                 <span

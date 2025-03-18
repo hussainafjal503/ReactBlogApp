@@ -1,56 +1,58 @@
 import React, { useEffect, useState } from "react";
 import BtnButton from "../../Reusable/BtnButton";
 import { useNavigate } from "react-router-dom";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
-import firebaseConfigeApp from "../../firebase";
-import { useSelector } from "react-redux";
 import Card from "../../Reusable/Card";
+import { useSelector } from "react-redux";
 
-const DB = getFirestore(firebaseConfigeApp);
+
 
 function Blog() {
   const navigateTo = useNavigate();
   const { user } = useSelector((state) => state.auth);
+  const {AllblogData}=useSelector(state=>state.blog);
   const addNewBlogHandler = () => {
     navigateTo("/blog/add-new-blog");
   };
   
 
-  const [blogData, setBlogData] = useState([]);
+  const [userBlogData, setUserBlogData] = useState([]);
+
+
+  function fetchUserBlog(){
+      const response=AllblogData.filter((doc)=>doc.uid===user.uid);
+      console.log(response);
+      setUserBlogData(response);
+  }
 
   useEffect(() => {
-    const getData = async () => {
-      try {
+    // const getData = async () => {
+    //   try {
 
-        const coll = collection(DB, "Blogs");
-        const q = query(coll, where("uid", "==", user.uid));
-        const result = await getDocs(q);
-        // console.log(result);
-        const tempArr = [];
+    //     const coll = collection(DB, "Blogs");
+    //     const q = query(coll, where("uid", "==", user.uid));
+    //     const result = await getDocs(q);
+    //     // console.log(result);
+    //     const tempArr = [];
 
-        result.docs.forEach((doc) => {
-          const data = doc.data();
-          // console.log(data);
+    //     result.docs.forEach((doc) => {
+    //       const data = doc.data();
+    //       // console.log(data);
 
-          if (data.uid === user.uid) {
-            tempArr.push(data);
-          }
-        });
+    //       if (data.uid === user.uid) {
+    //         tempArr.push(data);
+    //       }
+    //     });
 
-        setBlogData(tempArr);
-      } catch (err) {
-        console.log(`Error occured while getting user data : ${err}`);
-      }
-    };
+    //     setBlogData(tempArr);
+    //   } catch (err) {
+    //     console.log(`Error occured while getting user data : ${err}`);
+    //   }
+    // };
 
-    getData();
+    // getData();
+
+    fetchUserBlog();
+
   }, []);
 
   return (
@@ -79,7 +81,9 @@ function Blog() {
 
       {/* blog section */}
       <div className="flex flex-row gap-4 flex-wrap mt-6">
-        {blogData?.map((item, index) => (
+        {
+        userBlogData && 
+        userBlogData?.map((item, index) => (
           <div>
             <Card data={item} />
           </div>

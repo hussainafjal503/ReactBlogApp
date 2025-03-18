@@ -14,7 +14,7 @@ function Profile() {
   // console.log(user);
 
   const avatar = createAvatar(lorelei, {
-    seed: user?.displayName,
+    seed: user ?  user?.displayName : "john doe",
 
   });
   const svg = avatar.toDataUri();
@@ -117,7 +117,7 @@ const obj={
             background: `rbga(0,0,0,0.8)`,
           }}
         >
-          <img src={svg} alt="" className="w-[150px] h-[150px] rounded-full" />
+          <img src={svg ? svg :""} alt="" className="w-[150px] h-[150px] rounded-full" />
         </div>
         <div className="font-bold">
           <h4 className="text-md md:text-2xl capitalize ">

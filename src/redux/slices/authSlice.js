@@ -100,12 +100,20 @@ export const loginHandler=(data)=>async(dispatch)=>{
 		   email,
 		   password
 		 );
-		// console.log(userCredentials);
-		 dispatch(authSlice.actions.loginSuccess(userCredentials.user))
+		console.log(userCredentials);
+		const user={
+			displayName:userCredentials.user.displayName,
+			email:userCredentials.user.email,
+			uid:userCredentials.user.uid
+		}
+
+			console.log("hello")
+
+		 dispatch(authSlice.actions.loginSuccess(user))
 		 dispatch(authSlice.actions.clearAllErrorRequest());
-	   } catch (err) {
-		 console.log(`Error occured while login user : ${err}`);
-		dispatch(authSlice.actions.failedLogin("unable to login invalid Credentials"));
+		} catch (err) {
+			console.log(`Error occured while login user : ${err}`);
+			dispatch(authSlice.actions.failedLogin("unable to login invalid Credentials"));
 	   }
 }
 
