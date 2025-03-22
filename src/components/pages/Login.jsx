@@ -76,40 +76,42 @@ useEffect(()=>{
 
   return (
     <div
-      className="h-screen w-screen overflow-x-hidden overflow-y-hidden bg-white "
+      className="h-screen w-screen overflow-x-hidden overflow-y-hidden z-50 fixed top-0 "
       style={{
-        background: `url(${bgLogo})`,
-        backgroundSize: "cover",
+      
+
+
+        backgroundImage: `linear-gradient(to bottom, #6ce0e0, #58c7d1, #4aaec1, #3f96ae, #387e9a, #277397, #176893, #0a5d8e, #005a9a, #0056a5, #0051ae, #1449b5)`
       }}
     >
-      <div className="flex justify-center items-center h-full flex-col">
+      <div className="flex justify-center items-center h-full flex-col ">
         <form
           action=""
-          className="flex flex-col gap-6"
+          className="flex flex-col gap-6 shadow-md shadow-blue-800 rounded-md p-4"
           onSubmit={submitHandler}
         >
           <i className="ri-phone-lock-line font-bold text-6xl text-center text-white"></i>
 
-          <div className="bg-transparent border border-gray-100 rounded-full  py-2 px-6 text-white">
+          <div className="bg-transparent border border-gray-100 rounded-full  py-2 px-6 text-white ">
             <i className="ri-user-fill"></i>
             <input
               type="text"
               placeholder="Email"
               value={formValue.email}
               name="email"
-              className="outline-none border-none py-1 pl-4"
+              className="outline-none border-none py-1 pl-4 bg-transparent"
               onChange={inputHandler}
             />
           </div>
 
-          <div className="bg-transparent border border-gray-100 rounded-full  py-2 px-6 text-white">
+          <div className="bg-transparent border border-gray-100 rounded-full  py-2 px-6 text-white ">
             <i className="ri-rotate-lock-line"></i>
             <input
               type="text"
               placeholder="password"
               value={formValue.password}
               name="password"
-              className="outline-none border-none py-1 pl-4"
+              className="outline-none border-none py-1 pl-4 bg-transparent"
               onChange={inputHandler}
             />
           </div>
@@ -129,7 +131,7 @@ useEffect(()=>{
           )}
         </form>
 
-        <div className="mt-4 flex justify-between gap-12">
+        <div className="mt-4 flex justify-between gap-12 text-white">
           <Link to="/signup">Create an Account</Link>
           <button>NEED HELP?</button>
         </div>

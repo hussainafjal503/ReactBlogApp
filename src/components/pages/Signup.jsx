@@ -75,16 +75,15 @@ function Signup() {
 
   return (
     <div
-      className="h-screen w-screen overflow-x-hidden overflow-y-hidden bg-white "
+      className="z-50 h-screen w-screen overflow-x-hidden overflow-y-hidden fixed top-0"
       style={{
-        background: `url(${bgLogo})`,
-        backgroundSize: "cover",
+         backgroundImage: `linear-gradient(to bottom, #6ce0e0, #58c7d1, #4aaec1, #3f96ae, #387e9a, #277397, #176893, #0a5d8e, #005a9a, #0056a5, #0051ae, #1449b5)`
       }}
     >
       <div className="flex justify-center items-center h-full flex-col">
         <form
           action=""
-          className="flex flex-col gap-6"
+          className="flex flex-col gap-6 p-4 shadow-md shadow-teal-500 rounded-md"
           onSubmit={submitHandler}
         >
           <i className="ri-phone-lock-line font-bold text-6xl text-center text-white"></i>
@@ -96,7 +95,7 @@ function Signup() {
               placeholder="Full Name"
               value={formValue.fullName}
               name="fullName"
-              className="outline-none border-none py-1 pl-4"
+              className="outline-none border-none py-1 pl-4 bg-transparent"
               onChange={inputHandler}
             />
           </div>
@@ -107,7 +106,7 @@ function Signup() {
               placeholder="Email"
               value={formValue.email}
               name="email"
-              className="outline-none border-none py-1 pl-4"
+              className="outline-none border-none py-1 pl-4 bg-transparent"
               onChange={inputHandler}
             />
           </div>
@@ -119,7 +118,7 @@ function Signup() {
               placeholder="password"
               value={formValue.password}
               name="password"
-              className="outline-none border-none py-1 pl-4"
+              className="outline-none border-none py-1 pl-4 bg-transparent"
               onChange={inputHandler}
             />
           </div>
@@ -142,7 +141,7 @@ function Signup() {
           )}
         </form>
 
-        <div className="mt-4 flex justify-between gap-12">
+        <div className="mt-4 flex justify-between gap-12 text-white">
           <Link to="/login">Have an Account?</Link>
           <button>NEED HELP?</button>
         </div>

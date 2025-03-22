@@ -3,7 +3,9 @@ import {
 	getAuth,
 	createUserWithEmailAndPassword,
 	updateProfile,
-	signInWithEmailAndPassword
+	signOut,
+	signInWithEmailAndPassword,
+	onAuthStateChanged
   } from "firebase/auth";
   import firebaseConfigeApp from '../../firebase';
 
@@ -61,6 +63,35 @@ const authSlice=createSlice({
 
 		},
 
+		getUserState(state,action){
+			state.isAuthenticated=true;
+			state.user=action.payload;
+		},
+		getUserFailed(state,action){
+			state.isAuthenticated=fasle;
+			state.user=null;
+		},
+
+
+		logoutRequest(state,action){
+			state.loading=true;
+			state.message=null;
+			state.error=null;
+		},
+		logoutSuccess(state,action){
+			state.isAuthenticated=false;
+			state.error=null;
+			state.message=action.payload;
+			state.loading=false;
+
+		},
+		logoutFailed(state,action){
+			state.loading=false;
+			state.error=action.payload;
+
+		},
+
+
 
 		clearAllErrorRequest:(state,action)=>{
 			state.error=null;
@@ -116,6 +147,41 @@ export const loginHandler=(data)=>async(dispatch)=>{
 			dispatch(authSlice.actions.failedLogin("unable to login invalid Credentials"));
 	   }
 }
+
+
+export const getUser=()=>async(dispatch)=>{
+	try{
+		onAuthStateChanged(auth, (user) => {
+				  if (user) {
+					dispatch(authSlice.actions.getUserState(user))
+				  }
+				  else{
+					dispatch(authSlice.actions.getUserFailed());
+				  }
+				});
+
+	dispatch(authSlice.actions.clearAllErrorRequest());
+
+	}catch(Err){
+		console.log(`Error occured while getting user`);
+	}
+}
+
+
+export const logoutReduxHandler=()=>async(dispatch)=>{
+	dispatch(authSlice.actions.logoutRequest());
+	try{
+		const response=await signOut(auth);
+		dispatch(authSlice.actions.logoutSuccess("logged Out..."));
+		dispatch(authSlice.actions.clearAllErrorRequest());
+
+	}catch(err){
+		console.log(`Error occured while log out : ${err}`);
+		dispatch(authSlice.actions.logoutFailed("unable to logout"));
+
+	}
+}
+
 
 export const clearAllError=()=>(dispatch)=>{
 	dispatch(authSlice.actions.clearAllErrorRequest());

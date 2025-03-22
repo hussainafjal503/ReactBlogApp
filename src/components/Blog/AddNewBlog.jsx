@@ -18,12 +18,13 @@ const DB = getFirestore(firebaseConfigeApp);
 function AddNewBlog() {
   const navigateTo = useNavigate();
   const today=new Date();
+  const date=today.toLocaleDateString()
   const { user } = useSelector((state) => state.auth);
 
   const obj = {
     imageUrl: "",
     authorName: "",
-    publishDate: today,
+    publishDate: date,
     title: "",
     genere: "",
     source: "",
@@ -62,7 +63,7 @@ function AddNewBlog() {
       }
       toast.success("Blog Added");
 
-      navigateTo("/blog");
+      navigateTo("/");
     } catch (err) {
       console.log(`Error occured while updating profile : ${err}`);
     }

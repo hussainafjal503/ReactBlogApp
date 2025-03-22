@@ -31,7 +31,7 @@ function Card({data}) {
     className="flex flex-col gap-4 max-w-[350px] border border-gray-300 rounded-md  transition-all duration-200 hover:translate-y-4 hover:scale-95 shadow-md hover:shadow-blue-400">
       <img src={data?.imageUrl && data?.imageUrl} alt="image" className="h-[250px] rounded-tl-md rounded-tr-md" />
 
-      <div className="px-4 py-2 space-y-2">
+      <div className="px-4 py-2 space-y-2 pb-6">
         <div className="flex flex-row gap-2 text-purple-600 font-semibold text-sm">
           <span>{data?.authorName ? data?.authorName :"Author Name" } </span>
           <span>
@@ -57,8 +57,7 @@ function Card({data}) {
         </p>
 
         <div className="flex flex-row flex-wrap gap-2">
-          {Array(4)
-            .fill(0)
+          {  data?.tags ? data.tags.split(",")
             .map((item, index) => {
 
 				const color=colorGenerator();
@@ -73,10 +72,33 @@ function Card({data}) {
                     color: color.text
                   }}
                 >
-                  Managment
+             {item  }
                 </span>
               );
-            })}
+            })
+
+
+            : Array(4).fill(0).map((item, index) => {
+
+              const color=colorGenerator();
+              // console.log(color)
+      
+                    return (
+                      <span
+                        key={index}
+                        className=" px-2 rounded-full "
+                        style={{
+                          background: color.bg,
+                          color: color.text
+                        }}
+                      >
+                   {`Blog ${index}`}
+                      </span>
+                    );
+                  })
+            
+            
+            }
         </div>
       </div>
     </Link>

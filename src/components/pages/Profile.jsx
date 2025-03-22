@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { createAvatar } from "@dicebear/core";
 import { lorelei } from "@dicebear/collection";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import BtnButton from "../../Reusable/BtnButton";
 import { getFirestore,collection,addDoc,getDocs,query,where } from "firebase/firestore";
 import firebaseConfigeApp from '../../firebase'
+import {logoutReduxHandler} from '../../redux/slices/authSlice';
+import {useNavigate} from 'react-router-dom'
 
 
 const DB=getFirestore(firebaseConfigeApp);
 
 function Profile() {
+  const dispatch=useDispatch();
+  const navigateTo=useNavigate();
   const { user } = useSelector((state) => state.auth);
   // console.log(user);
 
@@ -102,11 +106,17 @@ const obj={
   },[])
 
 
+  const logOutHandler=()=>{
+    dispatch(logoutReduxHandler());
+    navigateTo('/login')
+  }
+
   /****************************xml codes *************************/
   return (
     <div className=" mt-25 md:mt-20 px-6 max-w-full flex flex-col gap-4">
-      <div className=" font-bold text-lg md:text-4xl mb-1 md:mb-4">
+      <div className=" font-bold text-lg md:text-4xl mb-1 md:mb-4 flex flex-row justify-between">
         <h2>MY PROFILE</h2>
+        <button className="text-lg bg-rose-300 rounded-md py-1 px-4 transition-all duration-200 hover:bg-rose-400 hover:scale-95 cursor-pointer " onClick={logOutHandler}>LogOut <i className="ri-logout-circle-r-line ml-2"></i></button>
       </div>
 
       {/* image section */}

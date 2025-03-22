@@ -7,6 +7,7 @@ import firebaseConfigeApp from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { getDataReduxHandler } from "../../redux/slices/BlogSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../redux/slices/authSlice";
 
 const auth = getAuth(firebaseConfigeApp);
 
@@ -21,16 +22,9 @@ function Home() {
   // console.log(Array.isArray(AllblogData));
   // const [session,setSession]=useState(null);
 
-  // useEffect(() => {
-  // 	onAuthStateChanged(auth, (user) => {
-  // 	  if (user) {
-  // 		setSession(user)
-  // 	  } else {
-  // 		setSession(null);
-  // 		navigateTo("/login");
-  // 	  }
-  // 	});
-  //   }, []);
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
 
   useEffect(() => {
     dispatch(getDataReduxHandler(user));
@@ -73,7 +67,7 @@ function Home() {
 
         <div className="mt-10 w-full px-10 ">
           <h2 className="font-bold text-3xl">All Blogs</h2>
-          <div className="flex flex-row gap-3 flex-wrap max-w-screen mt-10 mb-6">
+          <div className="flex flex-row gap-3 flex-wrap max-w-screen mt-10 justify-center mb-6">
             {AllblogData &&
               Object.values(AllblogData).map((item, index) => (
                 <div key={index}>

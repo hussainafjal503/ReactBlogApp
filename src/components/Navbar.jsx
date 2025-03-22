@@ -42,7 +42,7 @@ function Navbar() {
         <div className="flex flex-row  justify-between  ">
           <div>
             <button
-              className="md:hidden font-bold cursor-pointer transition-all duration-200 hover:scale-95"
+              className="block md:hidden font-bold cursor-pointer transition-all duration-200 hover:scale-95"
               onClick={() => {
                 setSlidder(slidder === -240 ? 0 : -240);
               }}
@@ -87,12 +87,12 @@ function Navbar() {
 
         {/* mobile view */}
         <div
-          className="absolute top-14 overflow-hidden pt-6 pb-10 min-w-[220px] bg-gray-100 shadow-md rounded-tl-md rounded-bl-md transition-all duration-300"
+          className="absolute top-14 overflow-hidden pt-6 pb-10 min-w-[220px] bg-gray-100 shadow-md rounded-tl-md rounded-bl-md transition-all duration-300 text-center flex justify-center"
           style={{
             right: `${slidder}px`,
           }}
         >
-          <div className="flex flex-col gap-4 items-center">
+          <div className="flex flex-col gap-4 items-center ">
             {menu?.map((item, index) => (
               <NavLink
                 to={item.href}

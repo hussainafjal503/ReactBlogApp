@@ -11,6 +11,8 @@ import Profile from './components/pages/Profile'
 import Blog from './components/pages/Blog'
 import AddNewBlog from './components/Blog/AddNewBlog'
 import ViewBlogPage from './components/Blog/ViewBlogPage'
+import ProtectedRoute from './components/ProtectRoute/ProtectedRoute'
+import NotFound from './components/pages/NotFound'
 
 function App() {
  
@@ -22,12 +24,15 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/view-blog/:id' element={<ViewBlogPage />}/>
+
+    <Route element={<ProtectedRoute/>}>
         <Route path='/profile' element={<Profile />} />
         <Route path='/blog' element={<Blog />}/>
-        <Route path='/view-blog/:id' element={<ViewBlogPage />}/>
-        
         <Route path='/blog/add-new-blog' element={<AddNewBlog/>}/>
+    </Route>
 
+    <Route path="*" element={<NotFound/>} />
 
       </Routes>
       
