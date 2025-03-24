@@ -35,7 +35,7 @@ function Home() {
     <div className="mt-16 w-full">
       <div className="w-full mx-auto">
         {/* recent blog section */}
-        <div className="flex flex-row gap-4 w-11/12 mx-auto">
+        <div className="flex md:flex-row flex-col gap-4 w-full md:w-11/12 mx-auto">
           {/* left div */}
           <div className="flex flex-col gap-4">
             <h2 className="font-bold text-xl">Recent Blog post</h2>
@@ -47,7 +47,7 @@ function Home() {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab,
                 aut.
               </p>
-              <div className="flex gap-4 text-blue-500">
+              <div className="flex flex-wrap gap-4 text-xs md:text-sm text-blue-500">
                 <span className="rounded-full w-fit bg-purple-200 py-1 px-4">
                   Design
                 </span>
@@ -64,6 +64,12 @@ function Home() {
           {/* right section */}
           <div>gfddf</div>
         </div>
+
+
+
+
+
+
 
         <div className="mt-10 w-full px-10 ">
           <h2 className="font-bold text-3xl">All Blogs</h2>

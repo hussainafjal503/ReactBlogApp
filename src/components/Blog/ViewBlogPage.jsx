@@ -44,7 +44,7 @@ function ViewBlogPage() {
 
       setData(response[0]);
 
-      console.log(response);
+      // console.log(response);
     }
   }
 
@@ -97,17 +97,19 @@ function ViewBlogPage() {
   useEffect(() => {
     let id;
 
-    if (message) {
-      toast.success(message);
-    }
+    // if (message) {
+    //   toast.success(message);
+    // }
     if (updateSuccess && isEdit) {
       id = setTimeout(() => {
         navigateTo("/");
         setIsEdit(false);
+        toast.success(message);
       }, 1000);
     }
     if (deleteSuccess && deleteStatus) {
       setDeleteStatus(false);
+      toast.success(message);
       navigateTo("/");
     }
 

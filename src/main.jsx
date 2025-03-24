@@ -10,11 +10,11 @@ import store from './redux/store.js'
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <StrictMode>
+ 
       <Provider store={store}>
         <App />
       </Provider>
       <ToastContainer position="bottom-right" />
-    </StrictMode>
+  
   </BrowserRouter>
 );

@@ -20,7 +20,7 @@ function Blog() {
 
   function fetchUserBlog(){
       const response=AllblogData.filter((doc)=>doc.uid===user.uid);
-      console.log(response);
+      // console.log(response);
       setUserBlogData(response);
   }
 

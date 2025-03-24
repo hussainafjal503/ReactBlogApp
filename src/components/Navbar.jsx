@@ -4,7 +4,7 @@ import { NavLink, useLocation, Link } from "react-router-dom";
 
 function Navbar() {
   const location = useLocation();
-  const { user } = useSelector((state) => state.auth);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
   const [slidder, setSlidder] = useState(-240);
   // console.log(user);
 
@@ -36,7 +36,7 @@ function Navbar() {
     <div className=" z-40 w-full fixed top-0 left-0 shadow-lg bg-gray-100">
       <nav className="w-full px-4  mx-auto flex flex-row justify-between  py-3  relative">
         <div className="">
-          <h1 className="font-bold text-xl ">Logo</h1>
+          <Link to={'/'} className="font-bold text-xl text-blue-700">ContentCrafter</Link>
         </div>
 
         <div className="flex flex-row  justify-between  ">
@@ -64,24 +64,26 @@ function Navbar() {
               </NavLink>
             ))}
 
-            <div className="flex gap-4">
-              <button className="hover:scale-90 transition-all duration-200">
-                <Link
-                  to="/login"
-                  className="font-bold text-white bg-blue-500 rounded-md py-2 px-4 w-fit hover:bg-blue-600 "
-                >
-                  Login
-                </Link>
-              </button>
-              <button className="hover:scale-90 transition-all duration-200">
-                <Link
-                  to="/signup"
-                  className="font-bold text-white bg-orange-600 rounded-md py-2 px-4 w-fit hover:bg-orange-700 cursor-pointer"
-                >
-                  Signup
-                </Link>
-              </button>
-            </div>
+            {!isAuthenticated && (
+              <div className="flex gap-4">
+                <button className="hover:scale-90 transition-all duration-200">
+                  <Link
+                    to="/login"
+                    className="font-bold text-white bg-blue-500 rounded-md py-2 px-4 w-fit hover:bg-blue-600 "
+                  >
+                    Login
+                  </Link>
+                </button>
+                <button className="hover:scale-90 transition-all duration-200">
+                  <Link
+                    to="/signup"
+                    className="font-bold text-white bg-orange-600 rounded-md py-2 px-4 w-fit hover:bg-orange-700 cursor-pointer"
+                  >
+                    Signup
+                  </Link>
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -105,24 +107,26 @@ function Navbar() {
               </NavLink>
             ))}
 
-            <div className="flex flex-col gap-8">
-              <button className="hover:scale-90 transition-all duration-200">
-                <Link
-                  to="/login"
-                  className="font-bold text-white bg-blue-500 rounded-md py-2 px-4 w-fit hover:bg-blue-600 "
-                >
-                  Login
-                </Link>
-              </button>
-              <button className="hover:scale-90 transition-all duration-200">
-                <Link
-                  to="/signup"
-                  className="font-bold text-white bg-orange-600 rounded-md py-2 px-4 w-fit hover:bg-orange-700 cursor-pointer"
-                >
-                  Signup
-                </Link>
-              </button>
-            </div>
+            {!isAuthenticated && (
+              <div className="flex flex-col gap-8">
+                <button className="hover:scale-90 transition-all duration-200">
+                  <Link
+                    to="/login"
+                    className="font-bold text-white bg-blue-500 rounded-md py-2 px-4 w-fit hover:bg-blue-600 "
+                  >
+                    Login
+                  </Link>
+                </button>
+                <button className="hover:scale-90 transition-all duration-200">
+                  <Link
+                    to="/signup"
+                    className="font-bold text-white bg-orange-600 rounded-md py-2 px-4 w-fit hover:bg-orange-700 cursor-pointer"
+                  >
+                    Signup
+                  </Link>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </nav>
