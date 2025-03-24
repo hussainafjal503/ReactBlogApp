@@ -1,3 +1,8 @@
+import.meta.env.VITE_API_KEY 
+
+
+
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -7,13 +12,13 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBenX01zxLhC1Cg9lVQhvTZDwKJ5HTEk6E",
-  authDomain: "blog-app-12421.firebaseapp.com",
-  projectId: "blog-app-12421",
-  storageBucket: "blog-app-12421.firebasestorage.app",
-  messagingSenderId: "849880193297",
-  appId: "1:849880193297:web:f72305a55257451be394b0",
-  measurementId: "G-WP0YCM56GE"
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN_NAME,
+  projectId: import.meta.env.VITE_PROJECTED_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAING_ID,
+  appId: import.meta.env.VITE_API_ID,
+  measurementId: import.meta.env.VITE_MEASURMENT_ID,
 };
 
 // Initialize Firebase
@@ -21,3 +26,5 @@ const firebaseConfigeApp = initializeApp(firebaseConfig);
 const analytics = getAnalytics(firebaseConfigeApp);
 
 export default firebaseConfigeApp;
+
+
