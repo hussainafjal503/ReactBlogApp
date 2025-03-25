@@ -14,7 +14,10 @@ function Footer() {
           </div>
           <div className="flex flex-col gap-2 mt-6">
             {footerMenu.map((item, index) => (
-              <Link className="transition-all duration-200 hover:text-orange-500 hover:scale-95">
+              <Link
+                key={index}
+                className="transition-all duration-200 hover:text-orange-500 hover:scale-95"
+              >
                 {item}
               </Link>
             ))}
@@ -23,7 +26,6 @@ function Footer() {
 
         <div className="space-y-4 ">
           <h2 className=" text-lg md:text-xl font-semibold uppercase text-orange-300 break-words">
-          
             Sign up for user newsletter
           </h2>
 
@@ -64,18 +66,14 @@ function Footer() {
         </div>
       </div>
 
+      <div className="w-full">
+        <div className="border-b border-orange-200 w-full"></div>
 
-
-			<div className="w-full">
-				<div className="border-b border-orange-200 w-full"></div>
-
-				<div className="flex flex-col md:flex-row text-center md:justify-between w-full mt-2">
-					<p>&copy; All Right to Team ContentCrafter </p>
-					<p>Design and Developed by Team ContentCrafter</p>
-				</div>
-			</div>
-
-
+        <div className="flex flex-col md:flex-row text-center md:justify-between w-full mt-2">
+          <p>&copy; All Right to Team ContentCrafter </p>
+          <p>Design and Developed by Team ContentCrafter</p>
+        </div>
+      </div>
     </div>
   );
 }

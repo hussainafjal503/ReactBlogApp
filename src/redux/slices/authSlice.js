@@ -112,6 +112,8 @@ export const registerHandler=(data)=>async(dispatch)=>{
 		   email,
 		   password
 		 );
+
+		 await updateProfile(auth.currentUser,{displayName:fullName});
 		 dispatch(authSlice.actions.registerSuccess());
 		 dispatch(authSlice.actions.clearAllErrorRequest());
 	   } catch (err) {
