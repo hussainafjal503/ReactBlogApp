@@ -19,7 +19,9 @@ function Blog() {
 
 
   function fetchUserBlog(){
-      const response=AllblogData.filter((doc)=>doc.uid===user.uid);
+    let response;
+    if(AllblogData)
+      response=AllblogData.filter((doc)=>doc.uid===user.uid);
       // console.log(response);
       setUserBlogData(response);
   }
@@ -56,7 +58,7 @@ function Blog() {
   }, []);
 
   return (
-    <div className="pt-22 md:pt-18 w-full px-4 md:px-8 ">
+    <div className="pt-22 md:pt-18 w-full px-4 md:px-8 min-h-[400px] md:min-h-[600px] ">
       {/* header sectiono */}
       <div className="flex w-full justify-between">
         <div className="font-bold text-lg md:text-4xl ">
@@ -80,7 +82,10 @@ function Blog() {
       </div>
 
       {/* blog section */}
-      <div className="flex flex-row gap-4 flex-wrap mt-6">
+
+      {
+        userBlogData.length!=0 ? 
+        <div className="flex flex-row gap-4 flex-wrap mt-6">
         {
         userBlogData && 
         userBlogData?.map((item, index) => (
@@ -89,6 +94,15 @@ function Blog() {
           </div>
         ))}
       </div>
+        : <div className="flex flex-col gap-4 items-center justify-center font-bold text-3xl h-[350px] md:h-[550px] text-gray-500">
+          <p><i className="ri-rest-time-line text-6xl"></i></p>
+          <p>No Blog found</p>
+        </div>
+      }
+     
+
+
+
     </div>
   );
 }

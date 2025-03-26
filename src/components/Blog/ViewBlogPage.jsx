@@ -213,7 +213,7 @@ function ViewBlogPage() {
                     onChange={inputHandler}
                   />
                 ) : (
-                  <p>{data?.genere && data?.genere}</p>
+                  <p>Genere : {data?.genere && data?.genere}</p>
                 )}
               </div>
 
@@ -228,7 +228,7 @@ function ViewBlogPage() {
                     onChange={inputHandler}
                   />
                 ) : (
-                  <p>{data?.genere && data?.genere}</p>
+                  <p>Source :  {data?.genere && data?.genere}</p>
                 )}
               </div>
             </div>

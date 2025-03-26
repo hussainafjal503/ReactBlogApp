@@ -15,16 +15,20 @@ function Navbar() {
     },
 
     {
-      title: "About",
-      href: "/about",
-    },
-    {
       title: "Blog",
       href: "/blog",
     },
     {
       title: "Profile",
       href: "/profile",
+    },
+    {
+      title: "About",
+      href: "/about",
+    },
+    {
+      title: "Contact",
+      href: "/contact",
     },
   ];
 

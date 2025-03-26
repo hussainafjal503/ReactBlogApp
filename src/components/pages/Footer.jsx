@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Footer() {
-  const footerMenu = ["Home", "About", "contact", "News & Offer"];
+  const footerMenu = ["Home", "About", "Contact", "News & Offer"];
 
   return (
-    <div className=" text-white w-full bg-[#183B4E] px-4 md:px-10 py-6 rounded-tl-lg rounded-tr-lg flex flex-col gap-4">
+    <div className=" text-white w-full bg-[#183B4E] px-4 md:px-10 py-6 rounded-tl-xl rounded-tr-xl flex flex-col gap-4 mt-6">
       <div className="flex md:flex-row flex-col md:justify-around">
         <div>
           <div className="space-y-1 text-orange-300">
@@ -15,6 +15,7 @@ function Footer() {
           <div className="flex flex-col gap-2 mt-6">
             {footerMenu.map((item, index) => (
               <Link
+              to={item==='Home' ?"/" : item==='News & Offer' ? "":`/${item.toLowerCase()}`}
                 key={index}
                 className="transition-all duration-200 hover:text-orange-500 hover:scale-95"
               >
@@ -70,7 +71,7 @@ function Footer() {
         <div className="border-b border-orange-200 w-full"></div>
 
         <div className="flex flex-col md:flex-row text-center md:justify-between w-full mt-2">
-          <p>&copy; All Right to Team ContentCrafter </p>
+          <p>&copy; All Right Reserved to Team ContentCrafter </p>
           <p>Design and Developed by Team ContentCrafter</p>
         </div>
       </div>

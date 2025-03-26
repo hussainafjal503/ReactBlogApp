@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/ProtectRoute/ProtectedRoute";
 import NotFound from "./components/pages/NotFound";
 import Footer from "./components/pages/Footer";
 import About from "./components/pages/About";
+import ContactPage from "./components/pages/ContactPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/view-blog/:id" element={<ViewBlogPage />} />
         <Route path="/about" element={<About/>}/>
+        <Route path="/contact" element={<ContactPage/>}/>
 
         <Route element={<ProtectedRoute />}>
           <Route path="/profile" element={<Profile />} />

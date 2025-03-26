@@ -1,12 +1,12 @@
 import React from 'react'
 
-function About() {
+function ContactPage() {
   return (
 	<div className='py-15 min-h-[600px]'>
-		fjawdafjl
 	  
+	  this is the contact page
 	</div>
   )
 }
 
-export default About
+export default ContactPage
