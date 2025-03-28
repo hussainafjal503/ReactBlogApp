@@ -29,7 +29,7 @@ function Card({data}) {
     <Link 
       to={`/view-blog/${data?.id}`}
     className="flex flex-col gap-4 max-w-[350px] border border-gray-300 rounded-md  transition-all duration-200 hover:translate-y-4 hover:scale-95 shadow-md hover:shadow-blue-400">
-      <img src={data?.imageUrl && data?.imageUrl} alt="image" className="h-[250px] rounded-tl-md rounded-tr-md" />
+      <img src={data?.imageUrl && data?.imageUrl} alt="image" className="h-[250px] w-[350px] rounded-tl-md rounded-tr-md object-cover" />
 
       <div className="px-4 py-2 space-y-2 pb-6">
         <div className="flex flex-row gap-2 text-purple-600 font-semibold text-sm">
