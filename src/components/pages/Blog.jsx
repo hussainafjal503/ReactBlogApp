@@ -84,7 +84,7 @@ function Blog() {
       {/* blog section */}
 
       {
-        userBlogData.length!=0 ? 
+        userBlogData?.length!=0 ? 
         <div className="flex flex-row gap-4 flex-wrap mt-6">
         {
         userBlogData && 

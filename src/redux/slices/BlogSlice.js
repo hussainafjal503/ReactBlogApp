@@ -11,7 +11,6 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import firebaseConfigeApp from "../../firebase";
-import { bottts } from "@dicebear/collection";
 
 const DB = getFirestore(firebaseConfigeApp);
 
@@ -84,7 +83,7 @@ const blogSlice = createSlice({
 });
 
 export const getDataReduxHandler = (user) => async (dispatch) => {
-  // console.log( user);
+  // console.log("hello");
   dispatch(blogSlice.actions.getDataRequest());
 
   try {
@@ -120,7 +119,7 @@ export const getDataReduxHandler = (user) => async (dispatch) => {
 
     dispatch(blogSlice.actions.getDataSuccess(tempArr));
   } catch (err) {
-    console.log(`Error occured while getting blog data`);
+    console.log(`Error occured while getting blog data : ${err}`);
     dispatch(blogSlice.actions.getDataFailed("unale to get data"));
   }
 };
